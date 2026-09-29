@@ -1,29 +1,61 @@
+<div align="center">
+
 # CropFloat
 
-A live piece of any window, floating above your workspace.
+**Turn part of a window into a live, floating view.**
 
-macOS 14+ · Apple Silicon · MIT
+macOS 14+ · Apple Silicon · MIT License
 
-[Chinese](README.zh-CN.md)
+**English** · [Chinese](README.zh-CN.md)
 
-This repository hosts distribution materials and release downloads. The source repository is currently private. The application is licensed under MIT; we do not yet claim publicly available source.
+</div>
+
+![CropFloat concept: select a region and display it live above another window.](docs/assets/overview.svg)
+
+CropFloat is a live region viewer for macOS. Select a window, crop an area, and watch it update in a small, movable, resizable window that stays on top.
+
+Keep a browser's camera feed visible while writing a document, or watch a long-running task's progress without switching windows.
 
 ## Release status
 
-The first public alpha is being prepared. No verified public installation package is available yet. Developer ID signing is complete; notarization and installation checks remain pending.
+**0.0.1 · Alpha in preparation.** Developer ID signing is complete. Apple notarization and installation checks are pending, so no public installer is available yet. Homebrew installation will be added after verification.
 
-## Privacy and support
+## How it works
 
-The current Mac app processes captured frames locally, without recording, uploading, audio capture, or analytics. It captures the authorized whole window and crops locally. Only the language preference is saved.
+| ① Choose a window | ② Select an area | ③ Float the view |
+| :--- | :--- | :--- |
+| Click **Choose Window…** and authorize a window in the system picker. | Drag in the live preview to select the area you want. | Click **Pin Selected Region**, then move or resize the floating view. |
 
-- [Privacy policy](privacy-en.html)
-- [MIT license](LICENSE)
-- Support and private security reports: xinyuwang1209@gmail.com
+The app defaults to English. Simplified Chinese is available from the interface or menus.
 
-Please do not include sensitive screen contents in support emails or public issues.
+## Controls
 
-## Limitations
+- **Click-through** — interact with the content underneath; restore interaction from the menu bar.
+- **Pause and resume** — stop capture while keeping the last frame, then resume when needed.
+- **Frame rate** — choose 15 or 30 fps.
+- **Stop capture** — use the menu bar or close the floating view. Closing only the editor leaves capture running.
 
-One source window at a time. Source layout changes may require reselection. Minimized, closed, protected, or locked sources may interrupt or freeze the image. A paused view intentionally retains the last frame. This alpha is not a safety-critical monitoring or alarm system.
+## Privacy
 
-Homebrew instructions will be added once the notarized release has passed installation checks.
+Frames are processed on your Mac. No recording to disk, uploads, audio capture, analytics, or tracking. Only your language preference is saved.
+
+The system authorizes the **whole source window**; CropFloat crops it locally for display. The current app is sandboxed and has no network entitlement.
+
+[Read the privacy policy](privacy-en.html)
+
+## Current limitations
+
+- One source window and one floating view at a time. Selections are not restored after quitting.
+- The selection follows window coordinates, not content. Scrolling or layout changes may require a new crop; reselect the source after major aspect-ratio changes.
+- Minimizing or closing the source, locking the screen, or protected content can interrupt or freeze the image. Do not rely on it as an alarm system.
+- Full-screen behavior, multiple displays, accessibility, sustained energy use, and macOS 14 compatibility still need validation. Capture is capped at 1920 pixels on the longest edge.
+
+## About this repository
+
+This repository hosts distribution documentation and future downloads. The source repository is currently private. The application is licensed under MIT.
+
+## Support and license
+
+Questions or private security reports: [xinyuwang1209@gmail.com](mailto:xinyuwang1209@gmail.com). Please omit sensitive screen contents.
+
+[MIT License](LICENSE) · © 2026 Xinyu Wang
